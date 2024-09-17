@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://ue5wtubbh2nn"]
+
+[ext_resource type="Texture2D" uid="uid://dcvg5t705gxtg" path="res://Enemies/GreenSlime/slime_green.png" id="1_mao03"]
+[ext_resource type="Script" path="res://Enemies/GreenSlime/green_slime.gd" id="1_vl0pq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uyqx"]
+atlas = ExtResource("1_mao03")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uq7e"]
+atlas = ExtResource("1_mao03")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32h08"]
+atlas = ExtResource("1_mao03")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rawlp"]
+atlas = ExtResource("1_mao03")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2cwq"]
+atlas = ExtResource("1_mao03")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daagh"]
+atlas = ExtResource("1_mao03")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4gt33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uyqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uq7e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32h08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rawlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2cwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daagh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymg4a"]
+size = Vector2(10, 11)
+
+[node name="GreenSlime" type="CharacterBody2D"]
+position = Vector2(0, -12)
+script = ExtResource("1_vl0pq")
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4gt33")
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.97307
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_ymg4a")
+debug_color = Color(0.22736, 0.632495, 0.167244, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
