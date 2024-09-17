@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ue5wtubbh2nn"]
+[gd_scene load_steps=12 format=3 uid="uid://ue5wtubbh2nn"]
 
 [ext_resource type="Texture2D" uid="uid://dcvg5t705gxtg" path="res://Enemies/GreenSlime/slime_green.png" id="1_mao03"]
 [ext_resource type="Script" path="res://Enemies/GreenSlime/green_slime.gd" id="1_vl0pq"]
@@ -61,6 +61,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymg4a"]
 size = Vector2(10, 11)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1mc2s"]
+
 [node name="GreenSlime" type="CharacterBody2D"]
 position = Vector2(0, -12)
 script = ExtResource("1_vl0pq")
@@ -69,15 +71,24 @@ script = ExtResource("1_vl0pq")
 sprite_frames = SubResource("SpriteFrames_4gt33")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.97307
+frame_progress = 0.259764
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_ymg4a")
-debug_color = Color(0.22736, 0.632495, 0.167244, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_1mc2s")
+debug_color = Color(0.977818, 0.00355162, 0.398394, 0.42)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
