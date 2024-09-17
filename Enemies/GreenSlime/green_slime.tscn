@@ -1,7 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://ue5wtubbh2nn"]
+[gd_scene load_steps=16 format=3 uid="uid://ue5wtubbh2nn"]
 
 [ext_resource type="Texture2D" uid="uid://dcvg5t705gxtg" path="res://Enemies/GreenSlime/slime_green.png" id="1_mao03"]
 [ext_resource type="Script" path="res://Enemies/GreenSlime/green_slime.gd" id="1_vl0pq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk41v"]
+atlas = ExtResource("1_mao03")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruanh"]
+atlas = ExtResource("1_mao03")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd8dj"]
+atlas = ExtResource("1_mao03")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy1yf"]
+atlas = ExtResource("1_mao03")
+region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6uyqx"]
 atlas = ExtResource("1_mao03")
@@ -29,6 +45,23 @@ region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gt33"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk41v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruanh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd8dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy1yf")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6uyqx")
@@ -69,9 +102,9 @@ script = ExtResource("1_vl0pq")
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4gt33")
-animation = &"walk"
+animation = &"hurt"
 autoplay = "idle"
-frame_progress = 0.259764
+frame_progress = 0.173057
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6.5)
