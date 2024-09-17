@@ -100,7 +100,7 @@ func _on_area_2d_area_entered(area: Area2D):
 		var node = area.get_parent() as Node
 		health_amount -= node.damage_amount
 		print("Health: ", health_amount)
-		
+		enemy_sprite.play("hurt")
 		if health_amount <= 0:
 			queue_free()
 	
