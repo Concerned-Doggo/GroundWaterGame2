@@ -7,7 +7,7 @@
 
 [node name="BackGroundParallaxLayer" type="ParallaxLayer" parent="."]
 position = Vector2(0, -100)
-motion_mirroring = Vector2(300, 0)
+motion_mirroring = Vector2(600, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="BackGroundParallaxLayer"]
 scale = Vector2(0.2, 0.2)
@@ -15,20 +15,20 @@ texture = ExtResource("1_pf2dm")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="BackGroundParallaxLayer"]
-position = Vector2(100, 0)
+position = Vector2(200, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_pf2dm")
 centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="BackGroundParallaxLayer"]
-position = Vector2(200, 0)
+position = Vector2(400, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_pf2dm")
 centered = false
 
 [node name="MidGroundParallaxLayer2" type="ParallaxLayer" parent="."]
 position = Vector2(0, -51)
-motion_mirroring = Vector2(300, 0)
+motion_mirroring = Vector2(600, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="MidGroundParallaxLayer2"]
 scale = Vector2(0.1, 0.1)
@@ -36,31 +36,31 @@ texture = ExtResource("2_gge87")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="MidGroundParallaxLayer2"]
-position = Vector2(50, 0)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_gge87")
-centered = false
-
-[node name="Sprite2D3" type="Sprite2D" parent="MidGroundParallaxLayer2"]
-position = Vector2(100, 0)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_gge87")
-centered = false
-
-[node name="Sprite2D4" type="Sprite2D" parent="MidGroundParallaxLayer2"]
 position = Vector2(150, 0)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_gge87")
 centered = false
 
+[node name="Sprite2D3" type="Sprite2D" parent="MidGroundParallaxLayer2"]
+position = Vector2(300, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_gge87")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="MidGroundParallaxLayer2"]
+position = Vector2(450, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_gge87")
+centered = false
+
 [node name="Sprite2D5" type="Sprite2D" parent="MidGroundParallaxLayer2"]
-position = Vector2(200, 0)
+position = Vector2(600, 0)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_gge87")
 centered = false
 
 [node name="Sprite2D6" type="Sprite2D" parent="MidGroundParallaxLayer2"]
-position = Vector2(250, 0)
+position = Vector2(750, 0)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_gge87")
 centered = false

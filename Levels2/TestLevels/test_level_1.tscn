@@ -58,3 +58,10 @@ position = Vector2(-79, 20.6667)
 
 [node name="Point2" type="Marker2D" parent="PurpleSlimeBoss/PatrolPoints" index="1"]
 position = Vector2(102.667, 23.6667)
+
+[node name="bosslabel" type="Label" parent="." index="5"]
+offset_left = 1122.0
+offset_top = -111.0
+offset_right = 1162.0
+offset_bottom = -88.0
+text = "asdfs"

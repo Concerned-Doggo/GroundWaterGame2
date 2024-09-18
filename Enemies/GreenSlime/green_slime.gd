@@ -1,13 +1,16 @@
 extends CharacterBody2D
 
+@export var boss_defeater : Label
 @export var patrol_points: Node
 @export var speed: int = 1500
 @export var wait_time: int = 3
 # enemy health
 @export var health_amount: int = 3
 
+
 @onready var enemy_sprite = $EnemySprite
 @onready var timer = $Timer
+
 
 const GRAVITY: int = 1000
 
@@ -78,6 +81,7 @@ func enemy_walk(delta: float):
 		timer.start()
 		await timer.timeout
 		
+	
 	enemy_sprite.flip_h = direction.x < 0
 
 func enemy_animation():
@@ -92,6 +96,7 @@ func _on_timer_timeout():
 	can_walk = true
 
 
+
 func _on_area_2d_area_entered(area: Area2D):
 	print("hurtBox area entered")
 	if area.get_parent().has_method("get_damage_amount"):
@@ -99,8 +104,6 @@ func _on_area_2d_area_entered(area: Area2D):
 		current_state = State.Hurt
 		var node = area.get_parent() as Node
 		health_amount -= node.damage_amount
-		print("Health: ", health_amount)
-		enemy_sprite.play("hurt")
+		
 		if health_amount <= 0:
 			queue_free()
-	

@@ -1,23 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ue5wtubbh2nn"]
+[gd_scene load_steps=13 format=3 uid="uid://ue5wtubbh2nn"]
 
 [ext_resource type="Texture2D" uid="uid://dcvg5t705gxtg" path="res://Enemies/GreenSlime/slime_green.png" id="1_mao03"]
 [ext_resource type="Script" path="res://Enemies/GreenSlime/green_slime.gd" id="1_vl0pq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ck3tc"]
-atlas = ExtResource("1_mao03")
-region = Rect2(0, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b52yw"]
-atlas = ExtResource("1_mao03")
-region = Rect2(24, 48, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_cj76a"]
 atlas = ExtResource("1_mao03")
 region = Rect2(48, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hfcos"]
-atlas = ExtResource("1_mao03")
-region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66wk2"]
 atlas = ExtResource("1_mao03")
@@ -47,16 +35,7 @@ region = Rect2(72, 24, 24, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ck3tc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b52yw")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_cj76a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hfcos")
 }],
 "loop": true,
 "name": &"hurt",
@@ -104,6 +83,7 @@ script = ExtResource("1_vl0pq")
 sprite_frames = SubResource("SpriteFrames_gucsy")
 animation = &"hurt"
 autoplay = "idle"
+frame_progress = 0.540006
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.5)
@@ -122,5 +102,8 @@ position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_bpi2f")
 debug_color = Color(0.820017, 0, 0.219613, 0.42)
 
+[node name="HurtTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
