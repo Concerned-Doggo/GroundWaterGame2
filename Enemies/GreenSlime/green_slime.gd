@@ -24,6 +24,7 @@ var number_of_points: int
 var point_positions: Array[Vector2]
 var current_point: Vector2
 var current_point_position: int
+@onready var game_manager = %GameManager
 
 
 
@@ -106,4 +107,5 @@ func _on_area_2d_area_entered(area: Area2D):
 		health_amount -= node.damage_amount
 		
 		if health_amount <= 0:
+			game_manager.isBossDead = true
 			queue_free()
