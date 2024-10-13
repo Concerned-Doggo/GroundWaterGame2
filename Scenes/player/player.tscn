@@ -1,7 +1,29 @@
-[gd_scene load_steps=42 format=3 uid="uid://b5wx4my5g3rsq"]
+[gd_scene load_steps=52 format=3 uid="uid://b5wx4my5g3rsq"]
 
 [ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_2q8nt"]
 [ext_resource type="Texture2D" uid="uid://boqsykcwi3yye" path="res://Scenes/player/knight.png" id="1_6pj0r"]
+[ext_resource type="Shader" uid="uid://1o8oow5co81k" path="res://Scenes/player/player_hit_flash_shader.tres" id="2_qd0k5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_074lg"]
+shader = ExtResource("2_qd0k5")
+shader_parameter/BooleanParameter = false
+shader_parameter/ColorParameter = Color(0.904159, 0, 0.074961, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lpc7"]
+atlas = ExtResource("1_6pj0r")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2flt2"]
+atlas = ExtResource("1_6pj0r")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g68xl"]
+atlas = ExtResource("1_6pj0r")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cekmy"]
+atlas = ExtResource("1_6pj0r")
+region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5kfj"]
 atlas = ExtResource("1_6pj0r")
@@ -155,6 +177,23 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3lpc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2flt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g68xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cekmy")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_i5kfj")
 }, {
 "duration": 1.0,
@@ -293,6 +332,46 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2rq8"]
 size = Vector2(10, 10)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yeti4"]
+radius = 6.08276
+
+[sub_resource type="Animation" id="Animation_frvfb"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/BooleanParameter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vmq1i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/BooleanParameter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_resue"]
+_data = {
+"Hit": SubResource("Animation_frvfb"),
+"RESET": SubResource("Animation_vmq1i")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -12)
 collision_layer = 2
@@ -300,10 +379,10 @@ script = ExtResource("1_2q8nt")
 speed = 600
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_074lg")
 sprite_frames = SubResource("SpriteFrames_ar8sw")
-animation = &"run_shoot"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.136885
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -311,3 +390,18 @@ shape = SubResource("RectangleShape2D_i2rq8")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(10, 4)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="HurtBoxCollisionShape" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_yeti4")
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_resue")
+}
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

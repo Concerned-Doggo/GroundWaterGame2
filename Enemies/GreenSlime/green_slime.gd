@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var wait_time: int = 3
 # enemy health
 @export var health_amount: int = 3
+@export var damage_amount: int = 1
 
 
 @onready var enemy_sprite = $EnemySprite

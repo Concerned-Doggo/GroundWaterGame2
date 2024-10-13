@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
 var bullet = preload("res://Scenes/player/Bullet/water_bullet.tscn")
+#var player_death_effect = preload("res://Scenes/player/PlayerDeathEffect/player_death_effect.tscn")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var muzzle = $Muzzle
+@onready var hit_animation_player: AnimationPlayer = $HitAnimationPlayer
 
 
-@export var speed: int = 1000.0
-@export var max_horizontal_speed: int = 300
+@export var speed: int = 400.0
+@export var max_horizontal_speed: int = 200
 @export var slow_down_speed: int= 3000
 
 const GRAVITY: int = 1000
@@ -114,6 +116,20 @@ func player_animation():
 	elif current_state == State.Shoot:
 		animated_sprite_2d.play("run_shoot")
 
+func player_death():
+	animated_sprite_2d.play("death")
+	queue_free()
+
 func input_movement():
 	var direction: float = Input.get_axis("move_left", "move_right")
 	return direction
+
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		print("enemy entered ", body.damage_amount )
+		hit_animation_player.play("Hit")
+		HealthManager.decrease_health(body.damage_amount)
+	
+	if HealthManager.current_health == 0:
+		player_death()
