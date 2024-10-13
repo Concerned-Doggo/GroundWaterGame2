@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpeb27cscexgs"]
+[gd_scene load_steps=7 format=3 uid="uid://bpeb27cscexgs"]
 
 [ext_resource type="Script" path="res://Scenes/UI/GameScreen/game_screen.gd" id="1_omdyk"]
 [ext_resource type="PackedScene" uid="uid://e14w10e7dhry" path="res://Scenes/UI/Healthbar/health_bar.tscn" id="1_rw3bx"]
 [ext_resource type="Texture2D" uid="uid://ddynracap7bhv" path="res://Assets/sprites/Images/water-drop.png" id="3_i16xk"]
+[ext_resource type="FontFile" uid="uid://q2ihkb7nc1kg" path="res://Assets/fonts/PixelOperator8.ttf" id="4_tijxt"]
+[ext_resource type="Texture2D" uid="uid://dp1knihncgmp0" path="res://Assets/sprites/Images/icons8-pause-24.png" id="5_4urtc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s6fgc"]
 
 [node name="GameScreen" type="CanvasLayer"]
 script = ExtResource("1_omdyk")
@@ -35,7 +39,7 @@ custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control"]
-position = Vector2(1, 5)
+position = Vector2(1, 0)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("3_i16xk")
 centered = false
@@ -44,6 +48,20 @@ centered = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_tijxt")
 theme_override_font_sizes/font_size = 16
 text = "0
 "
+
+[node name="PauseTextureButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture_normal = ExtResource("5_4urtc")
+texture_focused = SubResource("ViewportTexture_s6fgc")
+stretch_mode = 3
+
+[connection signal="pressed" from="PauseTextureButton" to="." method="_on_pause_texture_button_pressed"]
