@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://c10qi4k43vxit"]
+[gd_scene load_steps=18 format=3 uid="uid://c10qi4k43vxit"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Lady/MovingCharacter.gd" id="1_34pju"]
+[ext_resource type="Script" path="res://Scenes/Characters/VillageElder/village_elder.gd" id="1_15x4l"]
 [ext_resource type="Texture2D" uid="uid://bkomg5gqli32x" path="res://Scenes/Characters/VillageElder/merlin.png" id="1_w2kod"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7sxf6"]
@@ -103,14 +103,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17nh6"]
 size = Vector2(10, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji3oo"]
+size = Vector2(81, 17)
+
 [node name="VillageElder" type="CharacterBody2D"]
 position = Vector2(0, -12)
-script = ExtResource("1_34pju")
+script = ExtResource("1_15x4l")
 
 [node name="characterSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ntv4m")
 animation = &"idle"
-frame_progress = 0.194722
+frame_progress = 0.824998
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -120,4 +123,14 @@ shape = SubResource("RectangleShape2D_17nh6")
 wait_time = 3.0
 autostart = true
 
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(1.5, 3.5)
+shape = SubResource("RectangleShape2D_ji3oo")
+debug_color = Color(0.0225734, 0.322422, 0.493785, 0.42)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

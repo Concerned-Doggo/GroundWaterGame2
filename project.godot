@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 HealthManager="*res://Scenes/UI/Healthbar/HealthManager.gd"
 CollectiblesManager="*res://Scripts/collectibles_manager.gd"
 GameManager="*res://Scripts/GameManager.gd"
+LevelManager3="*res://Levels/level_manager_3.gd"
 
 [display]
 
