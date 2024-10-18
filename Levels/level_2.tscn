@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://biedefwxw6s0r"]
+[gd_scene load_steps=31 format=3 uid="uid://biedefwxw6s0r"]
 
 [ext_resource type="PackedScene" uid="uid://ddhkqes0gpxgy" path="res://Levels/base_level.tscn" id="1_6ntx2"]
 [ext_resource type="PackedScene" uid="uid://ue5wtubbh2nn" path="res://Enemies/GreenSlime/green_slime.tscn" id="2_mtgh7"]
@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://ds3p4xpcvk5vx" path="res://Scenes/Characters/Lady/lady.tscn" id="14_jhuh6"]
 [ext_resource type="PackedScene" uid="uid://854ppvtlvk4i" path="res://Scenes/Utils/Pipes/Level_3_pipe/pipe.tscn" id="16_rycil"]
 [ext_resource type="PackedScene" uid="uid://c3coyiqqqdl04" path="res://Scenes/Collectibles/yellowCoin/yellow_coin.tscn" id="19_b1665"]
+[ext_resource type="PackedScene" uid="uid://bx18p81yp8jth" path="res://Scenes/Utils/Information/Quest/QuestInformation.tscn" id="20_oqfx6"]
 [ext_resource type="PackedScene" uid="uid://ckuibnx5jgk3b" path="res://Scenes/Collectibles/BlueCoin/blue_coin.tscn" id="20_v4c36"]
+[ext_resource type="PackedScene" uid="uid://dipanh6qokw5b" path="res://Scenes/Pickup/HealthPickup/HealthPickup.tscn" id="21_u7opg"]
 
 [sub_resource type="Animation" id="Animation_8x0an"]
 length = 0.001
@@ -676,3 +678,12 @@ labelText = "More than half of all river basins are at risk by 2050 if current t
 [node name="Infomation4" parent="." index="17" instance=ExtResource("8_2m1wc")]
 position = Vector2(4137, 104)
 labelText = "Many industries, including those that produce textiles, food, paper, and pharmaceuticals, release untreated wastewater into nearby water sources.g"
+
+[node name="QuestInformation" parent="." index="18" instance=ExtResource("20_oqfx6")]
+position = Vector2(4405, -25)
+
+[node name="HealthPickup" parent="." index="19" instance=ExtResource("21_u7opg")]
+position = Vector2(3039, -53)
+
+[node name="HealthPickup2" parent="." index="20" instance=ExtResource("21_u7opg")]
+position = Vector2(3663, -53)
