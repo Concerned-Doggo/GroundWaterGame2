@@ -1,0 +1,6 @@
+villageElder: Hello hero,
+villageElder: Once upon a time this village used to flourish,
+villageElder: with good crops and large reservses of water, with villagers supporting each other.
+villageElder: but over the years the health concernes have increased significantly.
+villageElder: I wonder where the problem lies!
+[signal arg="first dialogue"]

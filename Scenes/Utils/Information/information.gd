@@ -19,6 +19,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			label.text = "The Pipe Seems to be leaking,
 			is it contaminating
 			the groundwater below?"
+			LevelManager3.sawTheLeakage()
 		elif count >= 2:
 			label.text = "Maybe the Village elder 
 			knows how to fix it."

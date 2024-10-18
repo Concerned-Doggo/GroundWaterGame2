@@ -14,7 +14,7 @@ func changePipe():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") && isFixed == false && LevelManager3.isReadyToFixPipe:
+	if body.is_in_group("Player") and isFixed == false and LevelManager3.isReadyToFixPipe:
 		var label = LABEL.instantiate()
 		label.text = "Fixing..."
 		#label.position.x = body.global_position.x 

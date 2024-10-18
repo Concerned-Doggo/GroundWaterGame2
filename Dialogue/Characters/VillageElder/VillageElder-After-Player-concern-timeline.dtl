@@ -1,0 +1,7 @@
+Player: Elder, I’ve discovered something troubling. There's a pipe near the outskirts of the village, and it’s leaking. It looks like chemicals are seeping into the ground, and I fear it might be contaminating the water supply below.
+villageElder: Hmm… this is indeed grave news. Our groundwater is the lifeblood of this village. 
+villageElder: First, we must act swiftly. That leak could spread its poison far and wide. You’ll need to find the source of the leak and plug it. Do you have any materials that can temporarily seal it?
+Player: Elder, I’ve checked my supplies… and I don’t have anything that could seal the leak. I came unprepared for something like this.
+villageElder: Here's some tools which could be sufficient for now to fix the leakage,
+villageElder: There’s an herb we used long ago when the river was poisoned by a storm.  It won’t undo all the damage, but it will slow the spread of the toxins.
+[signal arg="player has tools"]

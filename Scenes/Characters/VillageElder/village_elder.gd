@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+const VILLAGE_ELDER_DIALOGUE = preload("res://Dialogue/Dialogue.tscn")
 
 @export var patrol_points: Node
 @export var speed: int = 1500
@@ -9,7 +10,9 @@ extends CharacterBody2D
 @onready var timer: Timer = $Timer
 @onready var character_sprite = $characterSprite
 
-
+var count : int = 0
+var timeline : String = "Village-Elders-timeline"
+var isPlayerPresent : bool = false
 
 const GRAVITY: int = 1000
 
@@ -58,6 +61,9 @@ func character_idle(delta: float):
 		current_state = State.Idle
 
 func character_walk(delta: float):
+	if isPlayerPresent == true:
+		return
+	
 	if !can_walk:
 		return
 	
@@ -90,7 +96,18 @@ func character_animation():
 
 
 func player_speak_with_elder():
-	LevelManager3.spokeToElder()
+	Dialogic.signal_event.connect(dialogic_signal)
+	count += 1
+	if count > 1 and LevelManager3.hasSeenLeakage == true:
+		timeline = "VillageElder-After-Player-concern-timeline"
+	Dialogic.start(timeline)
+	
+
+func dialogic_signal(arg : String):
+	if arg == "player has tools":
+		LevelManager3.spokeToElder()
+	
+
 
 func _on_timer_timeout() -> void:
 	can_walk = true
@@ -99,3 +116,8 @@ func _on_timer_timeout() -> void:
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_speak_with_elder()
+		isPlayerPresent = true
+
+
+func _on_player_detector_body_exited(body: Node2D) -> void:
+	isPlayerPresent = false
