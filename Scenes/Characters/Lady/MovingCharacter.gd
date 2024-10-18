@@ -6,9 +6,9 @@ extends CharacterBody2D
 @export var wait_time: int = 3
 
 
-
+@onready var timer: Timer = $Timer
 @onready var character_sprite = $characterSprite
-@onready var timer = $Timer
+
 
 
 const GRAVITY: int = 1000
@@ -23,8 +23,6 @@ var number_of_points: int
 var point_positions: Array[Vector2]
 var current_point: Vector2
 var current_point_position: int
-
-
 
 
 var can_walk: bool = true

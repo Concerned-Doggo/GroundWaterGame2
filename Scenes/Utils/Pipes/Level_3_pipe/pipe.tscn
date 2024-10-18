@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://854ppvtlvk4i"]
+
+[ext_resource type="Script" path="res://Scenes/Utils/Pipes/Level_3_pipe/pipe.gd" id="1_6qqgy"]
+[ext_resource type="Texture2D" uid="uid://cotolwvx6irru" path="res://Assets/sprites/Images/pipeLeak.png" id="1_elpvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2suqb"]
+size = Vector2(172, 104)
+
+[node name="Pipe" type="Node2D"]
+position = Vector2(0, -16)
+script = ExtResource("1_6qqgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_elpvp")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-41, 23)
+shape = SubResource("RectangleShape2D_2suqb")
+debug_color = Color(1.44392e-07, 0.418862, 0.335075, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
