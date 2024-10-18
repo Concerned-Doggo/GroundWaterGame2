@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c10qi4k43vxit"]
+[gd_scene load_steps=10 format=3 uid="uid://c10qi4k43vxit"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/VillageElder/village_elder.gd" id="1_15x4l"]
 [ext_resource type="Texture2D" uid="uid://bkomg5gqli32x" path="res://Scenes/Characters/VillageElder/merlin.png" id="1_w2kod"]
@@ -19,38 +19,6 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("1_w2kod")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h8k68"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1lhwh"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_woob8"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ifcdl"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuta0"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fwet3"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qas3d"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ri80a"]
-atlas = ExtResource("1_w2kod")
-region = Rect2(96, 32, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ntv4m"]
 animations = [{
 "frames": [{
@@ -65,38 +33,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r8oqy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h8k68")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1lhwh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_woob8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ifcdl")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xuta0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fwet3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qas3d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ri80a")
-}],
-"loop": true,
-"name": &"walk",
 "speed": 8.0
 }]
 
@@ -113,7 +52,6 @@ script = ExtResource("1_15x4l")
 [node name="characterSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ntv4m")
 animation = &"idle"
-frame_progress = 0.824998
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)

@@ -1,46 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://854ppvtlvk4i"]
+[gd_scene load_steps=5 format=3 uid="uid://854ppvtlvk4i"]
 
 [ext_resource type="Script" path="res://Scenes/Utils/Pipes/Level_3_pipe/pipe.gd" id="1_6qqgy"]
 [ext_resource type="Texture2D" uid="uid://cotolwvx6irru" path="res://Assets/sprites/Images/pipeLeak.png" id="1_elpvp"]
+[ext_resource type="FontFile" uid="uid://q2ihkb7nc1kg" path="res://Assets/fonts/PixelOperator8.ttf" id="3_7ockb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2suqb"]
 size = Vector2(172, 104)
 
 [node name="Pipe" type="Node2D"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
 position = Vector2(0, -16)
-rotation = 0.0
-scale = Vector2(1, 1)
-skew = 0.0
 script = ExtResource("1_6qqgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_elpvp")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 2
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="Area2D"]
@@ -52,5 +27,17 @@ debug_color = Color(1.44392e-07, 0.418862, 0.335075, 0.42)
 wait_time = 3.0
 one_shot = true
 
+[node name="FixInstructionLabel" type="Label" parent="."]
+offset_left = -218.0
+offset_top = -8.0
+offset_right = -46.0
+offset_bottom = 15.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_7ockb")
+theme_override_font_sizes/font_size = 16
+text = "Press Q to Fix"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

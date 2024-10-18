@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx18p81yp8jth"]
+
+[ext_resource type="Script" path="res://Scenes/Utils/Information/Quest/quest_information.gd" id="1_cl1e8"]
+[ext_resource type="Texture2D" uid="uid://ckn73i2gaa6pd" path="res://Assets/sprites/Images/information.png" id="2_0wvo7"]
+[ext_resource type="PackedScene" uid="uid://dxo0co4cvw400" path="res://Scenes/Utils/Labels/label.tscn" id="3_r5qn0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g18ac"]
+radius = 19.105
+
+[node name="QuestInformation" type="Node2D"]
+position = Vector2(0, -7)
+script = ExtResource("1_cl1e8")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_g18ac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_0wvo7")
+
+[node name="Label" parent="." instance=ExtResource("3_r5qn0")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
