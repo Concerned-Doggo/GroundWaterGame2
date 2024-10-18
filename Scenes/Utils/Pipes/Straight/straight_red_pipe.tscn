@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmq3v0b2cwmem"]
+
+[ext_resource type="Texture2D" uid="uid://cmawa663xk7yp" path="res://Assets/sprites/Images/Pipes.png" id="1_cpk33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4gmd"]
+size = Vector2(25, 29)
+
+[node name="straightRedPipe" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cpk33")
+region_enabled = true
+region_rect = Rect2(3.15704, 33.0579, 27.2727, 29.7521)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_e4gmd")
+debug_color = Color(0.973068, 0, 0.436614, 0.42)

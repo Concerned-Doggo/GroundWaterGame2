@@ -18,6 +18,7 @@ const GRAVITY: int = 1000
 @export var jump_velocity: int = -300.0
 @export var jump_horizontal: int = 100
 @export var max_jump_horizontal_speed = 200
+@export var jump_count : int = 2
 
 enum State { Idle, Run, Jump, Shoot } 
 
@@ -29,6 +30,7 @@ var player_direction = 0
 
 # variables for shooting bullets
 var muzzle_position 
+var current_jump_count : int = 0
 
 func _ready():
 	current_state = State.Idle
@@ -78,14 +80,21 @@ func player_run(delta: float):
 
 
 func player_jump(delta: float):
+	var jump_input : bool = Input.is_action_just_pressed("jump")
 	# checking input
-	if Input.is_action_just_pressed("jump"):
-		current_state = State.Jump
+	if is_on_floor() and jump_input:
+		current_jump_count = 0
 		velocity.y = jump_velocity
-		
+		current_jump_count += 1
+		current_state = State.Jump
+	
+	if !is_on_floor() and jump_input and current_jump_count < jump_count:
+		velocity.y = jump_velocity
+		current_jump_count += 1
+		current_state = State.Jump
+	
 	# checking if player currently jumping or not
-	if not is_on_floor() and current_state == State.Jump:
-		
+	if !is_on_floor() and current_state == State.Jump:
 		var direction = input_movement()
 		velocity.x += direction * jump_horizontal * delta
 		velocity.x = clamp(velocity.x, -max_jump_horizontal_speed, max_jump_horizontal_speed) 
@@ -111,8 +120,10 @@ func player_animation():
 		animated_sprite_2d.play("idle")
 	elif current_state == State.Run and animated_sprite_2d.animation != "run_shoot":
 		animated_sprite_2d.play("run")
-	elif current_state == State.Jump:
+	elif current_state == State.Jump and current_jump_count == 1:
 		animated_sprite_2d.play("jump")
+	elif current_state == State.Jump and current_jump_count > 1:
+		animated_sprite_2d.play("doubleJump")
 	elif current_state == State.Shoot:
 		animated_sprite_2d.play("run_shoot")
 

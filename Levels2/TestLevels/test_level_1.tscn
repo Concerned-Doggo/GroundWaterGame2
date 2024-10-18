@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://b82ydl8gclx8k"]
+[gd_scene load_steps=14 format=3 uid="uid://b82ydl8gclx8k"]
 
 [ext_resource type="Script" path="res://Levels2/TestLevels/player_camera_2d.gd" id="1_1ks82"]
 [ext_resource type="PackedScene" uid="uid://ue5wtubbh2nn" path="res://Enemies/GreenSlime/green_slime.tscn" id="2_5o21r"]
-[ext_resource type="Script" path="res://Levels2/TestLevels/GameManager.gd" id="2_lx7gh"]
 [ext_resource type="PackedScene" uid="uid://bh2tbdspq2pij" path="res://Background/parallax_background.tscn" id="2_sxkfr"]
 [ext_resource type="PackedScene" uid="uid://bpeb27cscexgs" path="res://Scenes/UI/GameScreen/game_screen.tscn" id="2_u3afb"]
 [ext_resource type="Texture2D" uid="uid://yn1fno51yw3n" path="res://Assets/sprites/world_tileset.png" id="4_v7e3r"]
@@ -13,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ckuibnx5jgk3b" path="res://Scenes/Collectibles/BlueCoin/blue_coin.tscn" id="11_0mvu5"]
 [ext_resource type="PackedScene" uid="uid://c3coyiqqqdl04" path="res://Scenes/Collectibles/yellowCoin/yellow_coin.tscn" id="12_p05qw"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xfjdm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4y5r6"]
 texture = ExtResource("4_v7e3r")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -174,7 +173,7 @@ texture = ExtResource("4_v7e3r")
 
 [sub_resource type="TileSet" id="TileSet_ct1ba"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_xfjdm")
+sources/0 = SubResource("TileSetAtlasSource_4y5r6")
 
 [node name="TestLevel1" type="Node2D"]
 
@@ -190,10 +189,6 @@ script = ExtResource("1_1ks82")
 player = NodePath("../Player")
 
 [node name="GameScreen" parent="." instance=ExtResource("2_u3afb")]
-
-[node name="GameManager" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_lx7gh")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_sxkfr")]
 

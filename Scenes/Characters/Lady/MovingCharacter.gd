@@ -4,19 +4,17 @@ extends CharacterBody2D
 @export var patrol_points: Node
 @export var speed: int = 1500
 @export var wait_time: int = 3
-# enemy health
-@export var health_amount: int = 3
-@export var damage_amount: int = 1
 
 
-@onready var enemy_sprite = $EnemySprite
+
+@onready var character_sprite = $characterSprite
 @onready var timer = $Timer
 
 
 const GRAVITY: int = 1000
 
 
-enum State { Idle, Walk, Hurt }
+enum State { Idle, Walk}
 var current_state : State
 var direction: Vector2 = Vector2.LEFT
 
@@ -29,7 +27,7 @@ var current_point_position: int
 
 
 
-var can_walk: bool = false
+var can_walk: bool = true
 
 
 func _ready():
@@ -45,23 +43,23 @@ func _ready():
 	current_state = State.Idle
 
 func _physics_process(delta):
-	enemy_gravity(delta)
-	enemy_idle(delta)
-	enemy_walk(delta)
+	character_gravity(delta)
+	character_idle(delta)
+	character_walk(delta)
 	
 	move_and_slide()
 	
-	enemy_animation()
+	character_animation()
 
-func  enemy_gravity(delta: float):
+func  character_gravity(delta: float):
 	velocity.y += GRAVITY * delta
 
-func enemy_idle(delta: float):
+func character_idle(delta: float):
 	if !can_walk:
 		velocity.x = move_toward(velocity.x, 0, speed * delta)
 		current_state = State.Idle
 
-func enemy_walk(delta: float):
+func character_walk(delta: float):
 	if !can_walk:
 		return
 	
@@ -84,28 +82,16 @@ func enemy_walk(delta: float):
 		await timer.timeout
 		
 	
-	enemy_sprite.flip_h = direction.x < 0
+	character_sprite.flip_h = direction.x < 0
 
-func enemy_animation():
+func character_animation():
 	if current_state == State.Idle && !can_walk:
-		enemy_sprite.play("idle")
+		character_sprite.play("idle")
 	elif current_state == State.Walk && can_walk:
-		enemy_sprite.play("walk")
-	elif current_state == State.Hurt:
-		enemy_sprite.play("hurt")
+		character_sprite.play("walk")
 
-func _on_timer_timeout():
+
+
+
+func _on_timer_timeout() -> void:
 	can_walk = true
-
-
-
-func _on_area_2d_area_entered(area: Area2D):
-	print("hurtBox area entered")
-	if area.get_parent().has_method("get_damage_amount"):
-		# enemy hurt
-		current_state = State.Hurt
-		var node = area.get_parent() as Node
-		health_amount -= node.damage_amount
-		
-		if health_amount <= 0:
-			queue_free()

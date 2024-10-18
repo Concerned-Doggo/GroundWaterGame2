@@ -1,0 +1,124 @@
+[gd_scene load_steps=17 format=3 uid="uid://ds3p4xpcvk5vx"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Lady/MovingCharacter.gd" id="1_8rd8v"]
+[ext_resource type="Texture2D" uid="uid://cyygqjyxgqm62" path="res://Assets/sprites/Characters/Lady/ladyOfTheLake_.png" id="1_ism1r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0skr1"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xd7n"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqgjv"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtibw"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74kv0"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qor6"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(160, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4tgw"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(192, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbyrq"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(224, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj2j5"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg7xa"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf4xo"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbojy"]
+atlas = ExtResource("1_ism1r")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntv4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0skr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xd7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqgjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtibw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74kv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qor6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4tgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbyrq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj2j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg7xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf4xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbojy")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17nh6"]
+size = Vector2(10, 14)
+
+[node name="Lady" type="CharacterBody2D"]
+position = Vector2(0, -12)
+script = ExtResource("1_8rd8v")
+
+[node name="characterSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ntv4m")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.57467
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_17nh6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmy7fkbhu3r2i"]
+
+[ext_resource type="Texture2D" uid="uid://dcn2wcvhrrrgg" path="res://Assets/sprites/platforms.png" id="1_t4b4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h46pi"]
+size = Vector2(31, 7)
+
+[node name="RedDesertPlatform" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t4b4y")
+region_enabled = true
+region_rect = Rect2(15, 32.21, 33.8067, 8.99294)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_h46pi")
+one_way_collision = true
+debug_color = Color(0.334561, 0.607601, 0.391178, 0.42)

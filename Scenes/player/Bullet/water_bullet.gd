@@ -5,12 +5,12 @@ var bullet_impact_effect = preload("res://Scenes/player/Bullet/impact/bullet_imp
 
 
 var speed: int = 400
-var direction: int
+var direction: float
 var damage_amount: int = 1
 
 func _physics_process(delta):
 	if direction == 0:
-		direction = 1
+		direction = Input.get_axis("move_left", "move_right")
 	flip_h = direction < 0
 	move_local_x(delta * direction * speed)
 
